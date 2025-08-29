@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>Cleanup Party</title>
+	<title>ChoreMate</title>
 </svelte:head>
 
 {@render children?.()}
