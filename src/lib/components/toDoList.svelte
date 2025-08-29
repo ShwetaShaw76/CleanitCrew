@@ -1,4 +1,6 @@
 <script>
+    import { browser } from '$app/environment';
+
 // @ts-nocheck
     import { tasks, addTask } from '../../stores';
     let now = new Date();
@@ -6,12 +8,24 @@
     let time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
     let storedTasks = localStorage.getItem('tasks');
+
+    function handleAddTask() {
+        if (!browser) return; // prevent SSR crash
+
+        const now1 = new Date();
+        const newTask = {
+            date: now.toLocaleDateString(),
+            time: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+            content: "New Task" // later replace with user input
+        };
+        addTask(newTask);
+    }
 </script>
 
 <div class="list">
     <h1 class="heading">To-Do List</h1>
     <div class="buttons">
-        <button class="add" onclick={addTask}>Add Task</button>
+        <button class="add" onclick={handleAddTask}>Add Task</button>
         <button class="clear" >Clear All Tasks</button>
         <button class="remove">Remove task</button>
     </div>
