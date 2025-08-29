@@ -1,29 +1,24 @@
 <script>
+// @ts-nocheck
+    import { tasks, addTask } from '../../stores';
     let now = new Date();
-    let time = '';
-    let date = '';
+    let date = now.toLocaleDateString();
+    let time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
-    function updateTime() {
-        now = new Date();
-        time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        date = now.toLocaleDateString();
-    }
-    setInterval(updateTime, 1000);
-
-    let tasks = ["Sample Task 1", "Sample Task 2"];
+    let storedTasks = localStorage.getItem('tasks');
 </script>
 
 <div class="list">
     <h1 class="heading">To-Do List</h1>
     <div class="buttons">
-        <button class="add">Add Task</button>
-        <button class="clear">Clear All Tasks</button>
+        <button class="add" onclick={addTask}>Add Task</button>
+        <button class="clear" >Clear All Tasks</button>
         <button class="remove">Remove task</button>
     </div>
     <ul>
         
-            {#each tasks as task}
-               <li> {task}</li>
+            {#each $tasks as task}
+               <li>{task.date} {task.time} {task.content}</li>
             {/each}
         
     </ul>
