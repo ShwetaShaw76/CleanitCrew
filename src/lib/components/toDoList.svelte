@@ -2,39 +2,47 @@
     import { browser } from '$app/environment';
 
 // @ts-nocheck
-    import { tasks, addTask } from '../../stores';
+    import { tasks, addTask , clearTasks, removeTask } from '../../stores';
     let now = new Date();
     let date = now.toLocaleDateString();
     let time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
-    let storedTasks = localStorage.getItem('tasks');
+    let newTaskcontent = '';
+    let tasktime = time;
 
     function handleAddTask() {
-        if (!browser) return; // prevent SSR crash
-
-        const now1 = new Date();
+        if (newTaskcontent.trim() === '') return; 
+        const now = new Date();
         const newTask = {
             date: now.toLocaleDateString(),
-            time: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-            content: "New Task" // later replace with user input
+            time: tasktime,
+            content: newTaskcontent
         };
         addTask(newTask);
+        newTaskcontent = ''; 
+        tasktime = time;
     }
 </script>
 
 <div class="list">
     <h1 class="heading">To-Do List</h1>
-    <div class="buttons">
-        <button class="add" onclick={handleAddTask}>Add Task</button>
-        <button class="clear" >Clear All Tasks</button>
-        <button class="remove">Remove task</button>
+    <div class="input-row">
+        <input
+            type="text"
+            bind:value={newTaskcontent}
+            placeholder="Enter task name..."
+        />
+        <input type="hours" bind:value={tasktime} placeholder="Enter hours:minutes"/>
+        <div class="buttons">
+        <button class="add" on:click={handleAddTask}>Add Task</button>
+        <button class="clear" on:click={clearTasks}>Clear All Tasks</button>
+        </div>
     </div>
+    
     <ul>
-        
-            {#each $tasks as task}
-               <li>{task.date} {task.time} {task.content}</li>
-            {/each}
-        
+        {#each $tasks as task,i}
+            <li>{task.date} {task.time} {task.content} <button class="remove" on:click={()=>removeTask(i)}>Remove Task</button></li>
+        {/each}
     </ul>
 </div>
 
@@ -45,9 +53,8 @@
         align-items: center;
         justify-content: center;
         padding: 10px 20px;
-        border: 2px solid darkviolet;
         border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         background: linear-gradient(to bottom, black, grey);
         color: white;
         font-family: 'Courier New', Courier, monospace;
@@ -58,6 +65,18 @@
         text-decoration: underline;
         font-size: 4rem;
         margin-bottom: 2vh;
+    }
+
+     .input-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    .input-row input {
+        padding: 8px;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
     }
     .buttons{
         display: flex;

@@ -1,13 +1,62 @@
 <script lang="ts">
+// @ts-nocheck
+    import {onMount,onDestroy} from "svelte";
+    import { tasks } from "../../stores";
+
+    let now = new Date();
+    let date = now.toLocaleDateString();
+    let time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    let interval;
+
     let visible: boolean = true;
-    let notifications: string[] = [];
+    let notifications:{id:number,content:string,time:string}[]=[];
+    let dismissed = new Set<number>();
+
+    onMount(() => {
+        interval = setInterval(() => {
+            now = new Date();
+            date = now.toLocaleDateString();
+            time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+            $tasks.forEach( (task,i) => {
+                let taskTime = new Date(task.time);
+                if (now >= taskTime && !dismissed.has(i)) {
+                    if (!notifications.find(n => n.id === i)){
+                    notifications.push({id:i,content:task.content,time:task.time});
+                    }
+                }
+            }
+            );
+        }, 1000);
+    });
+
+    onDestroy(() => {
+        clearInterval(interval);
+    });
+
+    function dismissNotification(id:number){
+        dismissed.add(id);
+        notifications = notifications.filter(n => n.id !== id);
+    }
+
+    function snoozeNotification(id:number){
+        let task = $tasks[id];
+        if (task){
+            let taskTime = new Date(task.time);
+            taskTime.setMinutes(taskTime.getMinutes() + 10);
+            task.time = taskTime.toISOString();
+        }
+        dismissed(id);
+    }
 </script>
 
 <div class="reminders">
     <h1 class="heading">Notifications</h1>
     <ul>
         {#each notifications as note}
-        <li> {note} <button class="dismiss {visible?'visible':'hidden'}"><span class="material-symbols-outlined">
+        <li>
+           Reminder: {note.content} at {new Date(note.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} 
+            {note} <button class="dismiss {visible?'visible':'hidden'}"><span class="material-symbols-outlined">
 cancel <p>Dismiss</p>
 </span></button>
 <button class="snooze {visible?'visible':'hidden'}"><span class="material-symbols-outlined">
@@ -29,7 +78,7 @@ snooze <p>10mins</p>
         padding: 10px 20px;
         color: white;
         border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 5px 4px 6px rgba(0, 0, 0, 0.3);
     }
     .heading{
         margin: 0;

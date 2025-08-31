@@ -3,11 +3,11 @@
     
     let now = new Date();
     let year = now.getFullYear();
-    let monthNo = now.getMonth()+1;
+    let monthNo = now.getMonth();
     let month=months[monthNo];
     let maxDate = new Date(year,monthNo+1,0).getDate();
     let dates = Array.from({length:maxDate},(_,i)=>i+1);
-    let today = dates[now.getDate()];
+    let today = now.getDate();
 </script>
 
 <div class="template">
@@ -39,15 +39,15 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin: 20px;
+        margin: 10px;
         padding: 20px;
         border: 2px solid darkviolet;
         border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         background: linear-gradient(to right, white, lavenderblush);
     }
     .months{
-        border: 2px solid red;
+        box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
         border-radius: 15px;
         display: flex;
         gap: 20px;

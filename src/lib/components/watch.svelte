@@ -42,15 +42,20 @@
         align-items: center;
         justify-content: center;
         padding: 10px 20px;
-        border: 2px solid darkviolet;
         border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
         background: linear-gradient(to bottom, black, grey);
         color: white;
         font-family: 'Courier New', Courier, monospace;
         font-weight: 700;
         width: fit-content;
         margin: 20px;
+    }
+    .watch:hover{
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
+        transform: scale(1.02);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: default;
     }
     .date{
         font-size: 2rem;

@@ -16,3 +16,14 @@ tasks.subscribe(value => {
 export function addTask(task: {date: string, time: string, content: string}) {
     tasks.update(t => [...t, task]);
 }
+
+export function removeTask(index: number) {
+    tasks.update(t => {
+        t.splice(index, 1);
+        return t;
+    })
+};
+
+export function clearTasks() {
+    tasks.set([]);
+}

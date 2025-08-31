@@ -1,1 +1,12 @@
 @import 'tailwindcss';
+
+:root {
+    --purple-heart: hsla(267.5, 61.5%, 45.9%, 1);
+    --amethyst: hsla(278.29999999999995, 50.7%, 59.4%, 1);
+    --east-side: hsla(262.9, 49.3%, 72.9%, 1);
+    --spindle: hsla(211.79999999999995, 56%, 82.2%, 1);
+    --mint-tulip: hsla(178.20000000000005, 86.7%, 85.3%, 1);
+}
+body {
+    background-color: var(--mint-tulip);
+}

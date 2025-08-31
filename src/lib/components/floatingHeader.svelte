@@ -44,12 +44,11 @@ exit_to_app
         width: fit-content;
         align-items: center;
         justify-content: space-between;
-        background: linear-gradient(to right, darkviolet, pink);
+        background: linear-gradient(to right, var(--purple-heart),var(--spindle));
         padding: 10px 20px;
         color: white;
         flex-direction: row;
         border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         position: fixed;
         top: 98%;
         left: 30%;
@@ -57,6 +56,7 @@ exit_to_app
     }
     .header:hover{
         top: 80%;
+        box-shadow: -7px -10px 8px var(--mint-tulip);
     }
 
     .icons {

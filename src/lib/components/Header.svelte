@@ -43,10 +43,12 @@ search
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: linear-gradient(to right, darkviolet, pink);
+        background: linear-gradient(to right, var(--purple-heart),var(--spindle));
         padding: 10px 20px;
         color: white;
         flex-direction: row;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
     .heading {
