@@ -18,17 +18,25 @@
             date = now.toLocaleDateString();
             time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
-            $tasks.forEach( (task,i) => {
-                let taskTime = new Date(task.time);
-                if (now >= taskTime && !dismissed.has(i)) {
-                    if (!notifications.find(n => n.id === i)){
-                    notifications.push({id:i,content:task.content,time:task.time});
+           
+            notifications = notifications.filter(n => {
+                const task = $tasks[n.id];
+                if (!task) return false;
+                return (time >= task.time && date >= task.date && !dismissed.has(n.id));
+            });
+
+            $tasks.forEach((task, i) => {
+                let taskTime = `${task.date} ${task.time}`.toString();
+                if (time >= task.time && date >= task.date && !dismissed.has(i)) {
+                    if (!notifications.find(n => n.id === i)) {
+                        notifications.push( { id: i, content: task.content, time: taskTime });
+                        console.log(notifications)
                     }
                 }
-            }
-            );
+            });
         }, 1000);
     });
+    
 
     onDestroy(() => {
         clearInterval(interval);
@@ -39,14 +47,22 @@
         notifications = notifications.filter(n => n.id !== id);
     }
 
+    
+    
+
     function snoozeNotification(id:number){
         let task = $tasks[id];
         if (task){
-            let taskTime = new Date(task.time);
+            let taskTime =`${task.date}T${task.time}`;
             taskTime.setMinutes(taskTime.getMinutes() + 10);
-            task.time = taskTime.toISOString();
+            
+
+            task.date = taskTime.toISOString().split('T')[0];
+            console.log(task.date)
+            task.time = taskTime.toTimeString().split(' ')[0].slice(0,8);
+            console.log(task.time)
         }
-        dismissed(id);
+        dismissNotification(id);
     }
 </script>
 
@@ -55,13 +71,14 @@
     <ul>
         {#each notifications as note}
         <li>
-           Reminder: {note.content} at {new Date(note.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} 
-            {note} <button class="dismiss {visible?'visible':'hidden'}"><span class="material-symbols-outlined">
-cancel <p>Dismiss</p>
-</span></button>
-<button class="snooze {visible?'visible':'hidden'}"><span class="material-symbols-outlined">
-snooze <p>10mins</p>
-</span></button></li>
+           Reminder: {note.content} at {new Date(`${$tasks[note.id].date}T${note.time.length ===5 ? note.time+":00":note.time}`).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+           <button class="dismiss {visible?'visible':'hidden'}" on:click={() => dismissNotification(note.id)}><span class="material-symbols-outlined">
+               cancel <p>Dismiss</p>
+           </span></button>
+           <button class="snooze {visible?'visible':'hidden'}" on:click={() => snoozeNotification(note.id)}><span class="material-symbols-outlined">
+               snooze <p>10mins</p>
+           </span></button>
+        </li>
        {/each}
     </ul>
 
