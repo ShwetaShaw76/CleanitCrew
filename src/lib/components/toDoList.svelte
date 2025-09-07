@@ -9,18 +9,29 @@
 
     let newTaskcontent = '';
     let tasktime = time;
+    let selectedHour = time.split(":")[0];
+    let selectedMinute = time.split(":")[1];
+
+    function pad2(n) {
+        return n.toString().padStart(2, '0');
+    }
+    $: tasktime = `${pad2(selectedHour)}:${pad2(selectedMinute)}:00`;
 
     function handleAddTask() {
-        if (newTaskcontent.trim() === '') return; 
+        if (newTaskcontent.trim() === '') return;
         const now = new Date();
+        const hour = pad2(selectedHour);
+        const minute = pad2(selectedMinute);
         const newTask = {
             date: now.toLocaleDateString(),
-            time: tasktime,
+            time: `${hour}:${minute}:00`,
             content: newTaskcontent
         };
         addTask(newTask);
-        newTaskcontent = ''; 
-        tasktime = time;
+        newTaskcontent = '';
+        const t = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        selectedHour = t.split(":")[0];
+        selectedMinute = t.split(":")[1];
     }
 </script>
 
@@ -32,7 +43,19 @@
             bind:value={newTaskcontent}
             placeholder="Enter task name..."
         />
-        <input type="hours" bind:value={tasktime} placeholder="Enter hours:minutes"/>
+        <div class="time-select">
+            <select bind:value={selectedHour}>
+                {#each Array(24) as _, h}
+                    <option value={h < 10 ? `0${h}` : `${h}`}>{h < 10 ? `0${h}` : h}</option>
+                {/each}
+            </select>
+            :
+            <select bind:value={selectedMinute}>
+                {#each Array(60) as _, m}
+                    <option value={m < 10 ? `0${m}` : `${m}`}>{m < 10 ? `0${m}` : m}</option>
+                {/each}
+            </select>
+        </div>
         <div class="buttons">
         <button class="add" on:click={handleAddTask}>Add Task</button>
         <button class="clear" on:click={clearTasks}>Clear All Tasks</button>
@@ -77,6 +100,19 @@
         font-size: 1.2rem;
         border-radius: 5px;
         border: 1px solid #ccc;
+    }
+    .time-select {
+        display: flex;
+        align-items: center;
+        gap: 0.3em;
+    }
+    .time-select select {
+        padding: 6px;
+        font-size: 1.1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background: #fff;
+        color: #333;
     }
     .buttons{
         display: flex;

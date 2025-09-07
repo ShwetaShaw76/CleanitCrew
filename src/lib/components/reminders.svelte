@@ -1,7 +1,7 @@
 <script lang="ts">
 // @ts-nocheck
     import {onMount,onDestroy} from "svelte";
-    import { tasks } from "../../stores";
+    import { clearTasks, tasks } from "../../stores";
 
     let now = new Date();
     let date = now.toLocaleDateString();
@@ -26,7 +26,8 @@
             });
 
             $tasks.forEach((task, i) => {
-                let taskTime = `${task.date} ${task.time}`.toString();
+                let taskTime = `${task.time}`;
+                console.log(taskTime)
                 if (time >= task.time && date >= task.date && !dismissed.has(i)) {
                     if (!notifications.find(n => n.id === i)) {
                         notifications.push( { id: i, content: task.content, time: taskTime });
@@ -71,7 +72,7 @@
     <ul>
         {#each notifications as note}
         <li>
-           Reminder: {note.content} at {new Date(`${$tasks[note.id].date}T${note.time.length ===5 ? note.time+":00":note.time}`).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+           Reminder: {note.content} at {note.time}
            <button class="dismiss {visible?'visible':'hidden'}" on:click={() => dismissNotification(note.id)}><span class="material-symbols-outlined">
                cancel <p>Dismiss</p>
            </span></button>
