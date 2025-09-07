@@ -119,5 +119,3 @@
         transform: scale(1.2);
     }
 </style>
-
-npm install --save-dev
