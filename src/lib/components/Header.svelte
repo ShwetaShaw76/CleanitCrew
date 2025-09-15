@@ -1,5 +1,7 @@
 <script>
 
+    let permission = false;
+
 </script>
 
 <div class="header">
@@ -17,9 +19,9 @@ calendar_clock
 </span>
             <p>Calendar</p>
         </button>
-        <button class="notification">
+        <button class="notification" onclick={()=>Notification.requestPermission()}>
             <span class="material-symbols-outlined">
-notifications
+{permission ? 'notifications' : 'notifications_active'}
 </span>
             <p>Notifications</p>
         </button>

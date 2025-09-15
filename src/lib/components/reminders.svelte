@@ -2,6 +2,7 @@
 // @ts-nocheck
     import {onMount,onDestroy} from "svelte";
     import { clearTasks, tasks } from "../../stores";
+    import {browser} from "$app/environment";
 
     let now = new Date();
     let date = now.toLocaleDateString();
@@ -11,6 +12,8 @@
     let visible: boolean = true;
     let notifications:{id:number,content:string,time:string}[]=[];
     let dismissed = new Set<number>();
+
+    
 
     onMount(() => {
         interval = setInterval(() => {
@@ -32,6 +35,11 @@
                     if (!notifications.find(n => n.id === i)) {
                         notifications.push( { id: i, content: task.content, time: taskTime });
                         console.log(notifications)
+                        if (Notification.permission === 'granted') {
+                            new Notification('Task Reminder', {
+                                body: `It's time for: ${task.content} at ${taskTime}`,
+                            });
+                        }
                     }
                 }
             });
