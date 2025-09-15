@@ -1,10 +1,10 @@
 <script>
-
+    let permission = false;
 </script>
 
 <div class="header">
     <div class="icons">
-        <button class="home">
+        <button class="home" onclick={()=>window.location.href='/'}>
         <span class="material-symbols-outlined">
             home_app_logo
         </span>
@@ -16,9 +16,9 @@ calendar_clock
 </span>
             <p>Calendar</p>
         </button>
-        <button class="notification">
+        <button class="notification" onclick={()=>Notification.requestPermission()}>
             <span class="material-symbols-outlined">
-notifications
+{permission ? 'notifications' : 'notifications_active'}
 </span>
             <p>Notifications</p>
         </button>

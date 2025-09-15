@@ -7,7 +7,7 @@
 <div class="header">
     <h1 class="heading">ChoreMate - Manage Your workload</h1>
     <div class="icons">
-        <button class="home">
+        <button class="home" onclick={()=>window.location.href='/'}>
         <span class="material-symbols-outlined">
             home_app_logo
         </span>
