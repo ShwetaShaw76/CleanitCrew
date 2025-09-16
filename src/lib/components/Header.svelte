@@ -13,7 +13,7 @@
         </span>
         <p>Home</p>
         </button>
-        <button class="calendar">
+        <button class="calendar" onclick={()=>window.location.href='/calendar.svelte'}>
             <span class="material-symbols-outlined">
 calendar_clock
 </span>
