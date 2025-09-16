@@ -11,8 +11,8 @@
 <Header />
 <div class="flexbox">
 
-<Calendar />
 
+<Calendar  />
 <div class="down">
 <Watch />
 <Reminder />
