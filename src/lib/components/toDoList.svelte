@@ -78,8 +78,8 @@
         padding: 10px 20px;
         border-radius: 15px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        background: linear-gradient(to bottom, black, grey);
-        color: white;
+        background: linear-gradient(135deg, #cdb4db, #ffc8dd);
+        color: #1f1f1f;
         font-family: 'Courier New', Courier, monospace;
         font-weight: 700;
         margin: 20px;
@@ -99,7 +99,8 @@
         padding: 8px;
         font-size: 1.2rem;
         border-radius: 5px;
-        border: 1px solid #ccc;
+        border: 3px solid #fff;
+        color: #333;
     }
     .time-select {
         display: flex;
@@ -121,7 +122,7 @@
         font-size: 1.5rem;
     }
     button{
-        background-color: darkviolet;
+        background-color: #9b5de5;
         color: white;
         border: none;
         border-radius: 5px;
@@ -130,7 +131,7 @@
         font-weight: 700;
     }
     button:hover{
-        background-color: rebeccapurple;
+        background-color: #7b2cbf;
     }
     ul{
         list-style-type: none;

@@ -8,5 +8,5 @@
     --mint-tulip: hsla(178.20000000000005, 86.7%, 85.3%, 1);
 }
 body {
-    background-color: var(--mint-tulip);
+    background-color: #f9fafb;
 }

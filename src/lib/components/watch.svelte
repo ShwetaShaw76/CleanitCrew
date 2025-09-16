@@ -44,7 +44,7 @@
         padding: 10px 20px;
         border-radius: 15px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-        background: linear-gradient(to bottom, black, grey);
+        background: linear-gradient(135deg, #9b5de5, #f15bb5);
         color: white;
         font-family: 'Courier New', Courier, monospace;
         font-weight: 700;
@@ -52,10 +52,20 @@
         margin: 20px;
     }
     .watch:hover{
+        background: linear-gradient(60deg, #9b5de5, #f15bb5);
+        animation: glow 1.5s infinite alternate;
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
         transform: scale(1.02);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,;
         cursor: default;
+    }
+    @keyframes glow {
+        0% {
+            box-shadow: 0 0 5px #f15bb5, 0 0 10px #f15bb5, 0 0 30px #f15bb5, 0 0 20px #f15bb5;
+        }
+        100% {
+            box-shadow: 0 0 10px #9b5de5, 0 0 15px #9b5de5, 0 0 60px #9b5de5, 0 0 25px #9b5de5;
+        }
     }
     .date{
         font-size: 2rem;

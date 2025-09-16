@@ -110,7 +110,7 @@
         color: violet;
     }
     .today{
-        background: darkviolet;
+        background:#6366f1;
         color: white;
     }
     .today:hover{

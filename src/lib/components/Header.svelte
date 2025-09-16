@@ -45,7 +45,7 @@ search
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: linear-gradient(to right, var(--purple-heart),var(--spindle));
+        background: linear-gradient(90deg, #4f46e5, #9333ea);
         padding: 10px 20px;
         color: white;
         flex-direction: row;

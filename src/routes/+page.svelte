@@ -5,6 +5,7 @@
     import Watch from '$lib/components/watch.svelte';
     import Reminder from '$lib/components/reminders.svelte';
     import ToDoList from '$lib/components/toDoList.svelte';
+    import Footer from '$lib/components/footer.svelte';
 </script>
 
 
@@ -20,7 +21,7 @@
 </div>
 
 <ToDoList />
-
+<Footer />
 <FloatingHeader />
 
 <style>
