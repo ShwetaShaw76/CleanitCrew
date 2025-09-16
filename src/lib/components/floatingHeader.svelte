@@ -45,7 +45,7 @@ login
         border-radius: 15px;
         position: fixed;
         top: 98%;
-        left: 30%;
+        left: 35%;
         transition: all 2s;
     }
     .header:hover{
