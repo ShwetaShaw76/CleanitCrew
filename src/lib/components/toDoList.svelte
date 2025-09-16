@@ -1,7 +1,6 @@
 <script>
     import { browser } from '$app/environment';
 
-// @ts-nocheck
     import { tasks, addTask , clearTasks, removeTask } from '../../stores';
     let now = new Date();
     let date = now.toLocaleDateString();
