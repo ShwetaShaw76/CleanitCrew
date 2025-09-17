@@ -32,12 +32,6 @@
         </span>
         <p>Home</p>
         </button>
-        <button class="calendar" >
-            <span class="material-symbols-outlined">
-calendar_clock
-</span>
-            <p>Calendar</p>
-        </button>
         <button class="notification" onclick={()=>Notification.requestPermission()}>
             <span class="material-symbols-outlined">
 {permission ? 'notifications' : 'notifications_active'}

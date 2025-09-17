@@ -14,12 +14,6 @@
         </span>
         <p>Home</p>
         </button>
-        <button class="calendar">
-            <span class="material-symbols-outlined">
-calendar_clock
-</span>
-            <p>Calendar</p>
-        </button>
         <button class="notification" onclick={()=>Notification.requestPermission()}>
             <span class="material-symbols-outlined">
 {permission ? 'notifications' : 'notifications_active'}
@@ -49,7 +43,7 @@ login
         border-radius: 15px;
         position: fixed;
         top: 98%;
-        left: 35%;
+        left: 40%;
         transition: all 2s;
     }
     .header:hover{
