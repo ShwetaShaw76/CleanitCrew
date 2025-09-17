@@ -38,7 +38,7 @@
 </span>
             <p>Notifications</p>
         </button>
-        <button class="account">
+        <button class="account" onclick={()=>window.location.href='/login'}>
             <span class="material-symbols-outlined">
 login
 </span>

@@ -3,7 +3,7 @@
 
     function dragOpen(event) {
         event.currentTarget.style.top = '80%';
-    }
+    } 
 </script>
 
 <div class="header">
@@ -20,7 +20,7 @@
 </span>
             <p>Notifications</p>
         </button>
-        <button class="account">
+        <button class="account" onclick={()=>window.location.href='/login'}>
             <span class="material-symbols-outlined">
 login
 </span>
