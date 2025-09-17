@@ -1,12 +1,22 @@
 <script>
-
+    let displayHeader = false;
     let permission = false;
+    function showHeader() {
+        if (displayHeader == false) {
+            displayHeader = true;
+        } else {
+            displayHeader = false;
+        }
+    }
 
 </script>
 
 <div class="header">
+    <button class="burger-pad" onclick={showHeader}><span class="material-symbols-outlined">
+{displayHeader ? 'close' : 'menu'}
+</span></button>
     <h1 class="heading">ChoreMate - Manage Your workload</h1>
-    <div class="icons">
+    <div class="icons" style:display={displayHeader ? 'flex' : ''}>
         <button class="home" onclick={()=>window.location.href='/'}>
         <span class="material-symbols-outlined">
             home_app_logo
@@ -32,7 +42,7 @@ login
             <p>Login</p>
         </button>
         </div>
-        <div class="searchbar">
+        <div class="searchbar" style:display={displayHeader ? 'flex' : ''}>
             <input type="text" placeholder="Search..."/>
             <button class="search"><span class="material-symbols-outlined">
 search
@@ -41,6 +51,10 @@ search
 </div>
 
 <style>
+    .burger-pad {
+        display: none;
+        width: 24px; 
+    }
     .header {
         display: flex;
         align-items: center;
@@ -112,5 +126,33 @@ search
     .searchbar button:hover{
         background: linear-gradient(to bottom,darkviolet,pink);
         color: black;
+    }
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .burger-pad {
+            display: flex;
+        }
+        .heading {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .icons {
+            display: none;
+            margin-top: 10px;
+            justify-content: center;
+            width: 100%;
+        }
+        .searchbar {
+            display: none;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .searchbar input {
+            flex: 1;
+            width: 100%;
+        }
     }
 </style>
