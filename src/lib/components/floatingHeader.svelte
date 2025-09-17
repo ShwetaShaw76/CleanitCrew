@@ -1,5 +1,9 @@
 <script>
     let permission = false;
+
+    function dragOpen(event) {
+        event.currentTarget.style.top = '80%';
+    }
 </script>
 
 <div class="header">
@@ -95,6 +99,7 @@ login
         }
         .header:hover{
             box-shadow: -7px -10px 8px var(--mint-tulip);
+            top:98%;
         }
         .icons {
             margin-top: 10px;
