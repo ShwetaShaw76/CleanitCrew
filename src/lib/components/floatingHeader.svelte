@@ -87,4 +87,18 @@ login
     button:hover {
         text-decoration: underline;
     }
+    @media (max-width: 600px) {
+        .header {
+            flex-direction: column;
+            align-items: flex-start;
+            left: 2%;
+        }
+        .header:hover{
+            box-shadow: -7px -10px 8px var(--mint-tulip);
+        }
+        .icons {
+            margin-top: 10px;
+            justify-content: center;
+        }
+    }
 </style>

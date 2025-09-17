@@ -190,4 +190,26 @@
     .hidden{
         display: none;
     }
+    @media (max-width: 768px) {
+        .reminders{
+            width: 90vw;
+            padding: 5px 10px;
+        }
+        .heading{
+            font-size: 1.5rem;
+        }
+        ul{
+            font-size: 1rem;
+        }
+        li{
+            font-size: 0.9rem;
+        }
+        .snooze, .dismiss{
+            font-size: 0.7rem;
+            padding: 0.25vh 0.3vw;
+        }
+        .snooze p, .dismiss p{
+            font-size: 0.3rem;
+        }
+    }
 </style>

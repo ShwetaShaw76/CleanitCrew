@@ -157,12 +157,18 @@
             font-size: 2.5rem;
             margin-bottom: 1vh;
         }
+        .input-row {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
         .input-row input {
-            font-size: 1rem;
+            font-size: 1.5rem;
             padding: 6px;
         }
         .time-select select {
-            font-size: 1rem;
+            font-size: 1.5rem;
             padding: 4px;
         }
         .buttons{
@@ -171,7 +177,7 @@
             font-size: 1rem;
         }
         button{
-            padding: 0.5vh 1vw;
+            padding: 1vh 1.5vw;
             font-size: 1rem;
         }
         li{
