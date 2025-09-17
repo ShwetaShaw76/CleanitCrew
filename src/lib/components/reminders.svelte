@@ -200,9 +200,11 @@
         }
         ul{
             font-size: 1rem;
+            
         }
         li{
             font-size: 0.9rem;
+            padding: 1vh 1vw;
         }
         .snooze, .dismiss{
             font-size: 0.7rem;

@@ -9,6 +9,15 @@
         }
     }
 
+    let searchQuery = '';
+
+    function googlesearch(){
+        if (searchQuery.trim()){
+            const query = encodeURIComponent(searchQuery);
+            window.open(`https://www.google.com/search?q=${query}`, '_blank');
+        }
+    }
+
 </script>
 
 <div class="header">
@@ -43,8 +52,10 @@ login
         </button>
         </div>
         <div class="searchbar" style:display={displayHeader ? 'flex' : ''}>
-            <input type="text" placeholder="Search..."/>
-            <button class="search"><span class="material-symbols-outlined">
+            <input type="text" placeholder="Search in google..." bind:value={searchQuery} onkeydown={(e)=>{
+                if(e.key === 'Enter') googlesearch();
+            }}/>
+            <button class="search" onclick={googlesearch}><span class="material-symbols-outlined">
 search
 </span></button>
         </div>
