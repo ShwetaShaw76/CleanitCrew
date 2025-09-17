@@ -33,4 +33,18 @@
         gap: 5vw;
         margin-top: 10vh;
     }
+    @media (max-width: 768px) {
+        .flexbox {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .down{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5vh;
+    }        
 </style>

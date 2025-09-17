@@ -91,4 +91,22 @@
         0% {transform: rotateX(0deg);}
         100% {transform: rotateX(90deg);}
     }
+    @media (max-width: 768px) {
+        .watch{
+            margin: 10px;
+        }
+        .date{
+            font-size: 1.5rem;
+            margin-bottom: 1vh;
+        }
+        .time{
+            font-size: 3rem;
+            gap: 2vw;
+        }
+        .hours, .mins, .secs{
+            min-width: 20px;
+            padding: 0.5vh 0.5vw;
+            border: 3px solid whitesmoke;
+        }
+    }
 </style>

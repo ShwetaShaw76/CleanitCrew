@@ -118,4 +118,16 @@
         color: white;
         transform: scale(1.2);
     }
+    @media (max-width: 768px) {
+        .template{
+            width: 90vw;
+        }
+        .days button{
+            font-size: 1rem;
+            padding: 6px 4px;
+        }
+        .dates{
+            font-size: 0.8rem;
+        }
+    }
 </style>

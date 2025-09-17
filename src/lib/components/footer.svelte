@@ -47,4 +47,15 @@
     ul li a img{
         width: 4vw;
     }
+    @media (max-width: 768px) {
+        article{
+            font-size: 2rem;
+        }
+        aside{
+            font-size: 1rem;
+        }
+        ul li a img{
+            width: 14vw;
+        }
+    }
 </style>

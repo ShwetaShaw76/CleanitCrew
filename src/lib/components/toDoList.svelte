@@ -147,4 +147,36 @@
         width: fit-content;
         text-align: left;
     }
+    @media (max-width: 768px) {
+        .list{
+            margin: 10px;
+            padding: 5px 10px;
+            flex-direction: column;
+        }
+        .heading{
+            font-size: 2.5rem;
+            margin-bottom: 1vh;
+        }
+        .input-row input {
+            font-size: 1rem;
+            padding: 6px;
+        }
+        .time-select select {
+            font-size: 1rem;
+            padding: 4px;
+        }
+        .buttons{
+            gap: 3vw;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        button{
+            padding: 0.5vh 1vw;
+            font-size: 1rem;
+        }
+        li{
+            font-size: 1rem;
+            padding: 3px 6px;
+        }
+    }
 </style>
