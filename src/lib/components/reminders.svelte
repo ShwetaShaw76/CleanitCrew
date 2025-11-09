@@ -30,11 +30,11 @@
 
             $tasks.forEach((task, i) => {
                 let taskTime = `${task.time}`;
-                console.log(taskTime)
+                
                 if (time >= task.time && date >= task.date && !dismissed.has(i)) {
                     if (!notifications.find(n => n.id === i)) {
                         notifications.push( { id: i, content: task.content, time: taskTime });
-                        console.log(notifications)
+                       
                         if (Notification.permission === 'granted') {
                             new Notification('Task Reminder', {
                                 body: `It's time for: ${task.content} at ${taskTime}`,
@@ -62,14 +62,24 @@
     function snoozeNotification(id:number){
         let task = $tasks[id];
         if (task){
-            let taskTime =`${task.date}T${task.time}`;
-            taskTime.setMinutes(taskTime.getMinutes() + 10);
+            let taskTime = task.time;
+            let TaskMin = parseInt(taskTime.split(':')[1]);
+            console.log(TaskMin);
+            TaskMin = TaskMin + 10;
+            let hours = taskTime.split(':')[0];
+            if (TaskMin >= 60){
+                TaskMin = TaskMin - 60;
+                hours = (parseInt(hours) + 1).toString().padStart(2, '0');
+            }
+            taskTime = `${hours}:${TaskMin.toString().padStart(2,'0')}:${taskTime.split(':')[2]}`;
             
-
-            task.date = taskTime.toISOString().split('T')[0];
-            console.log(task.date)
-            task.time = taskTime.toTimeString().split(' ')[0].slice(0,8);
-            console.log(task.time)
+            
+            
+            task.date = task.date;
+            task.time = taskTime;
+            
+            
+            $tasks[id] = task;
         }
         dismissNotification(id);
     }
